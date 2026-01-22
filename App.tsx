@@ -10,19 +10,21 @@ import WorkoutHistory from './components/WorkoutHistory.tsx';
 import Dashboard from './components/Dashboard.tsx';
 
 const App: React.FC = () => {
+  // Initialisation immédiate depuis le localStorage
+  const [templates, setTemplates] = useState<WorkoutTemplate[]>(() => {
+    const saved = localStorage.getItem('templates');
+    return saved ? JSON.parse(saved) : [];
+  });
+  
+  const [history, setHistory] = useState<WorkoutSession[]>(() => {
+    const saved = localStorage.getItem('history');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [view, setView] = useState<ViewState>('dashboard');
-  const [templates, setTemplates] = useState<WorkoutTemplate[]>([]);
-  const [history, setHistory] = useState<WorkoutSession[]>([]);
   const [activeSession, setActiveSession] = useState<WorkoutSession | null>(null);
 
-  // Persistence (LocalStorage)
-  useEffect(() => {
-    const savedTemplates = localStorage.getItem('templates');
-    const savedHistory = localStorage.getItem('history');
-    if (savedTemplates) setTemplates(JSON.parse(savedTemplates));
-    if (savedHistory) setHistory(JSON.parse(savedHistory));
-  }, []);
-
+  // Sauvegarde automatique lors des changements
   useEffect(() => {
     localStorage.setItem('templates', JSON.stringify(templates));
   }, [templates]);
@@ -71,7 +73,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-black text-white">
+    <div className="flex flex-col h-screen bg-black text-white selection:bg-[#0a84ff]/30">
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto no-scrollbar pb-24">
         {view === 'dashboard' && (
@@ -108,29 +110,29 @@ const App: React.FC = () => {
 
       {/* Bottom Navigation (iOS style) */}
       {view !== 'active' && (
-        <nav className="fixed bottom-0 w-full bg-[#1c1c1e]/80 ios-blur border-t border-white/5 flex justify-around items-center px-4 pt-3 pb-8 z-50">
+        <nav className="fixed bottom-0 w-full bg-[#1c1c1e]/90 ios-blur border-t border-white/5 flex justify-around items-center px-4 pt-3 pb-8 z-50">
           <button 
             onClick={() => setView('dashboard')}
-            className={`flex flex-col items-center space-y-1 transition-colors ${view === 'dashboard' ? 'text-[#0a84ff]' : 'text-[#8e8e93]'}`}
+            className={`flex flex-col items-center space-y-1.5 transition-all active:scale-90 ${view === 'dashboard' ? 'text-[#0a84ff]' : 'text-[#8e8e93]'}`}
           >
-            <Icons.Dashboard className="w-6 h-6" />
-            <span className="text-[10px] font-medium">Dashboard</span>
+            <Icons.Dashboard className={`w-6 h-6 ${view === 'dashboard' ? 'fill-current' : ''}`} />
+            <span className="text-[10px] font-bold tracking-tight">Dashboard</span>
           </button>
 
           <button 
             onClick={() => setView('templates')}
-            className={`flex flex-col items-center space-y-1 transition-colors ${view === 'templates' || view === 'create_template' ? 'text-[#0a84ff]' : 'text-[#8e8e93]'}`}
+            className={`flex flex-col items-center space-y-1.5 transition-all active:scale-90 ${view === 'templates' || view === 'create_template' ? 'text-[#0a84ff]' : 'text-[#8e8e93]'}`}
           >
-            <Icons.Templates className="w-6 h-6" />
-            <span className="text-[10px] font-medium">Séances</span>
+            <Icons.Templates className={`w-6 h-6 ${view === 'templates' ? 'fill-current' : ''}`} />
+            <span className="text-[10px] font-bold tracking-tight">Séances</span>
           </button>
           
           <button 
             onClick={() => setView('history')}
-            className={`flex flex-col items-center space-y-1 transition-colors ${view === 'history' ? 'text-[#0a84ff]' : 'text-[#8e8e93]'}`}
+            className={`flex flex-col items-center space-y-1.5 transition-all active:scale-90 ${view === 'history' ? 'text-[#0a84ff]' : 'text-[#8e8e93]'}`}
           >
-            <Icons.History className="w-6 h-6" />
-            <span className="text-[10px] font-medium">Historique</span>
+            <Icons.History className={`w-6 h-6 ${view === 'history' ? 'fill-current' : ''}`} />
+            <span className="text-[10px] font-bold tracking-tight">Historique</span>
           </button>
         </nav>
       )}
