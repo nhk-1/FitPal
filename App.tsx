@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ViewState, WorkoutTemplate, WorkoutSession } from './types.ts';
 import { Icons } from './constants.tsx';
+import { generateId } from './utils.ts';
 import TemplateList from './components/TemplateList.tsx';
 import TemplateCreator from './components/TemplateCreator.tsx';
 import ActiveSession from './components/ActiveSession.tsx';
@@ -37,7 +38,7 @@ const App: React.FC = () => {
 
   const startWorkout = (template: WorkoutTemplate) => {
     const newSession: WorkoutSession = {
-      id: crypto.randomUUID(),
+      id: generateId(),
       templateId: template.id,
       templateName: template.name,
       startTime: Date.now(),

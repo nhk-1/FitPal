@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { WorkoutTemplate, TemplateExercise, ExerciseDefinition } from '../types.ts';
-import { Icons, EXERCISES, MUSCLE_GROUPS } from '../constants.tsx';
+import { Icons, EXERCISES } from '../constants.tsx';
+import { generateId } from '../utils.ts';
 import ExerciseSelector from './ExerciseSelector.tsx';
 
 interface Props {
@@ -16,7 +17,7 @@ const TemplateCreator: React.FC<Props> = ({ onSave, onCancel }) => {
 
   const handleAddExercise = (exercise: ExerciseDefinition) => {
     const newEx: TemplateExercise = {
-      id: crypto.randomUUID(),
+      id: generateId(),
       exerciseId: exercise.id,
       sets: 3,
       reps: 10,
@@ -40,7 +41,7 @@ const TemplateCreator: React.FC<Props> = ({ onSave, onCancel }) => {
     if (exercises.length === 0) return alert('Ajoutez au moins un exercice');
     
     onSave({
-      id: crypto.randomUUID(),
+      id: generateId(),
       name,
       exercises,
       createdAt: Date.now()
