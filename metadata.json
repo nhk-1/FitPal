@@ -1,0 +1,7 @@
+{
+  "name": "IronTrack iOS",
+  "description": "Une application de musculation premium pour iOS permettant de créer des templates, de suivre ses séances en temps réel et de consulter son historique d'entraînement avec une interface fluide et intuitive.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
