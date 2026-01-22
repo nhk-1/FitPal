@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
-import { ViewState, WorkoutTemplate, WorkoutSession } from './types';
-import { Icons } from './constants';
-import TemplateList from './components/TemplateList';
-import TemplateCreator from './components/TemplateCreator';
-import ActiveSession from './components/ActiveSession';
-import WorkoutHistory from './components/WorkoutHistory';
-import Dashboard from './components/Dashboard';
+import { ViewState, WorkoutTemplate, WorkoutSession } from './types.ts';
+import { Icons } from './constants.tsx';
+import TemplateList from './components/TemplateList.tsx';
+import TemplateCreator from './components/TemplateCreator.tsx';
+import ActiveSession from './components/ActiveSession.tsx';
+import WorkoutHistory from './components/WorkoutHistory.tsx';
+import Dashboard from './components/Dashboard.tsx';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('dashboard');

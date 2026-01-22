@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { WorkoutTemplate, TemplateExercise, ExerciseDefinition } from '../types';
-import { Icons, EXERCISES, MUSCLE_GROUPS } from '../constants';
-import ExerciseSelector from './ExerciseSelector';
+import { WorkoutTemplate, TemplateExercise, ExerciseDefinition } from '../types.ts';
+import { Icons, EXERCISES, MUSCLE_GROUPS } from '../constants.tsx';
+import ExerciseSelector from './ExerciseSelector.tsx';
 
 interface Props {
   onSave: (template: WorkoutTemplate) => void;

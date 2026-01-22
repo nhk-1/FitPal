@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { WorkoutTemplate } from '../types';
-import { Icons } from '../constants';
-import WorkoutTemplateCard from './WorkoutTemplateCard';
+import { WorkoutTemplate } from '../types.ts';
+import { Icons } from '../constants.tsx';
+import WorkoutTemplateCard from './WorkoutTemplateCard.tsx';
 
 interface Props {
   templates: WorkoutTemplate[];

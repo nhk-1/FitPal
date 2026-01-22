@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { WorkoutSession, WorkoutTemplate } from '../types';
-import { Icons } from '../constants';
-import WorkoutTemplateCard from './WorkoutTemplateCard';
+import { WorkoutSession, WorkoutTemplate } from '../types.ts';
+import { Icons } from '../constants.tsx';
+import WorkoutTemplateCard from './WorkoutTemplateCard.tsx';
 
 interface Props {
   history: WorkoutSession[];
@@ -73,8 +73,6 @@ const Dashboard: React.FC<Props> = ({ history, templates, onStartTemplate }) => 
         
         <div className="flex justify-between items-end h-24 px-2">
           {['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((day, idx) => {
-            // Mapping for JS getDay() (Sunday=0, Monday=1...)
-            // Our array is L=1, M=2... D=0
             const dayNum = (idx + 1) % 7;
             const hasWorkout = lastWeekSessions.some(s => new Date(s.startTime).getDay() === dayNum);
             

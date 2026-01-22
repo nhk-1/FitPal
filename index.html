@@ -10,6 +10,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="IronTrack">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2964/2964514.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +25,6 @@
             -webkit-tap-highlight-color: transparent;
             overscroll-behavior-y: contain;
             background-color: #000000;
-            /* Support for iOS notch area */
             padding-top: env(safe-area-inset-top);
         }
         .ios-blur {
@@ -35,7 +38,6 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        /* Custom animations for transitions */
         .animate-slide-up {
             animation: slideUp 0.3s ease-out;
         }
@@ -43,18 +45,17 @@
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
         }
-        
-        /* Adjust fixed navigation for iOS home indicator */
         nav {
-            padding-bottom: calc(2rem + env(safe-area-inset-bottom)) !important;
+            padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)) !important;
         }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
     "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
   }
 }
@@ -62,5 +63,7 @@
 </head>
 <body class="text-white overflow-hidden">
     <div id="root"></div>
+    <!-- Point d'entrée de l'application -->
+    <script type="module" src="index.tsx"></script>
 </body>
 </html>
